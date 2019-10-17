@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Image, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity, I18nManager } from "react-native";
 
 import moment from "moment";
 
@@ -8,7 +8,7 @@ import styles from "./Calendar.style.js";
 
 class WeekSelector extends Component {
   static propTypes = {
-    controlDate: PropTypes.any,
+    controlDate: PropTypes.object,
     iconComponent: PropTypes.any,
     iconContainerStyle: PropTypes.oneOfType([
       PropTypes.object,
@@ -88,7 +88,8 @@ class WeekSelector extends Component {
             imageSize,
             iconStyle,
             iconInstanceStyle,
-            opacity
+            opacity,
+            {transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}
           ]}
           source={imageSource}
         />

@@ -69,7 +69,7 @@ class CalendarDay extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let newState = {};
+    newState = {};
     let doStateUpdate = false;
 
     if (this.props.selected !== prevProps.selected) {
@@ -118,8 +118,6 @@ class CalendarDay extends Component {
   calcSizes(props) {
     return {
       containerSize: Math.round(props.size),
-      containerPadding: Math.round(props.size / 5),
-      containerBorderRadius: Math.round(props.size / 2),
       dateNameFontSize: Math.round(props.size / 5),
       dateNumberFontSize: Math.round(props.size / 2.9)
     };
@@ -222,7 +220,6 @@ class CalendarDay extends Component {
     let responsiveDateContainerStyle = {
       width: this.state.containerSize,
       height: this.state.containerSize,
-      borderRadius: this.state.containerBorderRadius,
       padding: this.state.containerPadding
     };
 
@@ -236,12 +233,13 @@ class CalendarDay extends Component {
           style={[
             styles.dateContainer,
             responsiveDateContainerStyle,
-            dateViewStyle
+            dateViewStyle,
+            this.state.selected? { width: 48, height: 80,backgroundColor: '#FF3682',zIndex: 100} : { width: 48, backgroundColor: '#42414C'}
           ]}
         >
           {this.props.showDayName && (
             <Text
-              style={[{ fontSize: this.state.dateNameFontSize }, dateNameStyle]}
+              style={[dateNameStyle, { fontSize: this.state.dateNameFontSize }]}
               allowFontScaling={this.props.allowDayTextScaling}
             >
               {this.props.date.format("ddd").toUpperCase()}

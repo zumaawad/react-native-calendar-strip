@@ -606,7 +606,8 @@ class CalendarStrip extends Component {
         style={[
           styles.calendarContainer,
           { backgroundColor: this.props.calendarColor },
-          this.props.style
+          this.props.style,
+          {height: 80}
         ]}
       >
         <View
